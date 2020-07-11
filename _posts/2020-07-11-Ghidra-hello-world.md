@@ -1,24 +1,18 @@
 ---
 layout: post
-title: Getting started with Ghidra
+title: Getting started with Ghigra
 ---
-# What is Ghidra
-Ghidra is a Open Source decompiler released by the NSA. It is used to reverse engineer compiled programs. 
-
-# Goals
-* Get or feet wet this Ghidra
-* Reverse engineer a compiled C program
 
 # Prerequisites
 * Download [Ghidra](https://ghidra-sre.org/)
 * Download [Java JDK](https://www.oracle.com/java/technologies/javase-downloads.html)
-* Download the [HelloWorld binary](https://github.com/lookie27/ghidra-hello-world/raw/master/HelloWorld)
+* Download the [HelloWorld binary]()
 
 # Getting started
-Extract Ghidra and execute ghidraRun.(bat/sh)
+Extract Ghidra and execute ghidraRun.(bat/sh).
 
 You will be met with a screen that looks like
-![](https://github.com/lookie27/ghidra-hello-world/blob/master/Blog%20Resources/GhidraNewProject.png)
+##Insert pic
 Click `File -> New Project`
 Select Non Shared Project.
 Change the project directory to where you want the project to exist then give the project a name.
@@ -28,7 +22,7 @@ Now click Code Browser (dragon's head) under Tool Chest.
 
 On the window that just opended, click `File -> Import File` and select the HelloWorld binary.
 
-A import settings window will open and Ghidra will 'guess' the format and language. Ghidra should be able to figure out this binary, so just click OK.
+A import settings window will open and Ghigra will 'guess' the format and language. Ghigra should be able to figure out this binary, so just click OK.
 
 If you get a popup that say HelloWorld has not been analyzed yet, click yes.
  Leave the default analyze options and click analyze
@@ -40,7 +34,7 @@ On the left hand side, under Symbol Tree, open functions and click entry
 Now on the right hand side of the scree, you should see a decompiled view of entry.
 
 Now this is where decompilation gets harder.
-Ghidra does its best with what it has, but we both know that is not what the C program I wrote looks like.
+Ghigra does its best with what it has, but we both know that is not what the C program I wrote looks like.
 
 Lets pretty this up.
 
@@ -78,19 +72,17 @@ This might look confusing, because it is. What is uRam0000000000000000?!
 Sometime, it helps to look at the assembly,
 
 If we click on _mysteryFunction in the Decompile view, we can see that it light up in the Listing view. Now lets follow the assembly:
-`
 PUSH 	RBP   								Push the frame pointer (FP) to RSP
 MOV 	RBP, RSP 							Move the FP into RBP
 MOV 	qword ptr [RBP + _local_10], 0x0	Move the address of 0x0 into local variable on the stack
 MOV		RAX,qword ptr [RBP + local_10]      Move the address of the local variable into RAX
 MOV     byte ptr [RAX],0x5					Move 5 into the value at address define in RAX which is 0x0.
-`
 
 To sum that up, we create a local variable and set its address to 0x0 then set its value to 5 which would look like
-`
+```
 void* p = 0;
 p = 5;
-`
+```
 
 And to summarize this whole thing, we have a program that segfaults.
 
