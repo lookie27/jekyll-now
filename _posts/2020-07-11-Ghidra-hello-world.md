@@ -97,19 +97,19 @@ This might look confusing, because it is!
 Sometimes, it helpful to look at the assembly.
 
 If we click on **\_mysteryFunction** in the Decompile view, we can see that it light up in the Listing view. Now lets follow the assembly: 
-`
+```
 PUSH 	RBP   								Push the frame pointer (FP) to RSP 
 MOV 	RBP, RSP 							Move the FP into RBP  
 MOV 	qword ptr [RBP + _local_10], 0x0	Move the address of 0x0 into local variable on the stack 
 MOV		RAX,qword ptr [RBP + local_10]      Move the address of the local variable into RAX 
 MOV     byte ptr [RAX],0x5					Move 5 into the value at address define in RAX which is 0x0. 
-`
+```
 
 To sum that up, we create a local variable and set its address to 0x0 then set its value to 5 which would look like 
-`
-void* p = 0;
-p = 5;
-`
+```
+void* p = 0; 
+p = 5; 
+```
 
 Now that we have our decompiled C program we can put it all together to get 
 
