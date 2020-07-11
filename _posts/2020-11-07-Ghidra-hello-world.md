@@ -15,24 +15,25 @@ Ghidra is a Open Source decompiler released by the NSA. It is used to reverse en
 * Download the [HelloWorld binary](https://github.com/lookie27/ghidra-hello-world/raw/master/HelloWorld)
 
 # Getting started
-Extract Ghidra and execute ghidraRun.bat (Windows) 
-						   ghidraRun.sh (Linux)
+Extract Ghidra and execute `ghidraRun.bat (Windows) 
+						    ghidraRun.sh (Linux)`
 
 You will be met with a screen that looks like
-![]({{https://github.com}}/lookie27/ghidra-hello-world/blob/master/Blog%20Resources/GhidraNewProject.png)
+![]({{ https://github.com }}/lookie27/ghidra-hello-world/blob/master/Blog%20Resources/GhidraNewProject.png )
+
 Click `File -> New Project`
-Select Non Shared Project.
+Select `Non Shared Project`
 Change the project directory to where you want the project to exist then give the project a name.
 
-Now click Code Browser (dragon's head) under Tool Chest.
+Now click `Code Browser` (dragon's head) under Tool Chest.
 
 
 On the window that just opended, click `File -> Import File` and select the HelloWorld binary.
 
 A import settings window will open and Ghidra will 'guess' the format and language. Ghidra should be able to figure out this binary, so just click OK.
 
-If you get a popup that say HelloWorld has not been analyzed yet, click yes.
- Leave the default analyze options and click analyze
+If you get a popup that say HelloWorld has not been analyzed yet, click yes otherwise ato the top click `Analysis - > Auto Analyze`
+Leave the default analyze options and click analyze.
 
 You screen will look similar to 
 
