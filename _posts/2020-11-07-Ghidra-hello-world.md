@@ -19,7 +19,7 @@ Extract Ghidra and execute ```ghidraRun.bat (Windows)
 						    ghidraRun.sh (Linux)```
 
 You will be met with a screen that looks like
-<img src="https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png width="200" height="200" />
+![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png)
 
 Click ```File -> New Project```
 Select ```Non Shared Project```
@@ -36,12 +36,12 @@ If you get a popup that say HelloWorld has not been analyzed yet, click yes othe
 Leave the default analyze options and click analyze.
 
 You screen will look similar to 
-<img src="https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/DecompileView.png width="200" height="200" />
+![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/DecompileView.png)
 
 On the left hand side, under Symbol Tree, open functions and click entry
 
 Now on the right hand side of the scree, you should see a decompiled view of entry.
-<img src="https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/MainDecompile.png width="200" height="200" />
+![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/MainDecompile.png)
 
 Now this is where decompilation gets harder.
 Ghidra does its best with what it has, but we both know that is not what the C program I wrote looks like.
