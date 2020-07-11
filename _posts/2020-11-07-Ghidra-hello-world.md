@@ -60,7 +60,7 @@ Change the method signature for \_\_strcpy\_chk to be that of int strcpy(char*, 
 
 Now we can see that we are copying "HelloWorld!\n" into **pcVar1**. Right click on pcVar1 and **rename** to something more helpful, like **helloWorldString**.
 
-Thats much better! 
+That's much better! 
 ![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/MainClean.png)
 
 Now that we have a main function that looks pretty clean, lets see what it does 
