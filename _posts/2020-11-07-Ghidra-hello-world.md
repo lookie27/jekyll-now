@@ -15,31 +15,33 @@ Ghidra is a Open Source decompiler released by the NSA. It is used to reverse en
 * Download the [HelloWorld binary](https://github.com/lookie27/ghidra-hello-world/raw/master/HelloWorld)
 
 # Getting started
-Extract Ghidra and execute `ghidraRun.bat (Windows) 
-						    ghidraRun.sh (Linux)`
+Extract Ghidra and execute ```ghidraRun.bat (Windows) 
+						    ghidraRun.sh (Linux)```
 
 You will be met with a screen that looks like
-![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png)
+<img src="https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png width="200" height="200" />
 
-Click `File -> New Project`
-Select `Non Shared Project`
+Click ```File -> New Project```
+Select ```Non Shared Project```
 Change the project directory to where you want the project to exist then give the project a name.
 
-Now click `Code Browser` (dragon's head) under Tool Chest.
+Now click ```Code Browser``` (dragon's head) under Tool Chest.
 
 
-On the window that just opended, click `File -> Import File` and select the HelloWorld binary.
+On the window that just opended, click ```File -> Import File``` and select the HelloWorld binary.
 
 A import settings window will open and Ghidra will 'guess' the format and language. Ghidra should be able to figure out this binary, so just click OK.
 
-If you get a popup that say HelloWorld has not been analyzed yet, click yes otherwise ato the top click `Analysis - > Auto Analyze`
+If you get a popup that say HelloWorld has not been analyzed yet, click yes otherwise ato the top click ```Analysis - > Auto Analyze```
 Leave the default analyze options and click analyze.
 
 You screen will look similar to 
+<img src="https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/DecompileView.png width="200" height="200" />
 
 On the left hand side, under Symbol Tree, open functions and click entry
 
 Now on the right hand side of the scree, you should see a decompiled view of entry.
+<img src="https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/MainDecompile.png width="200" height="200" />
 
 Now this is where decompilation gets harder.
 Ghidra does its best with what it has, but we both know that is not what the C program I wrote looks like.
