@@ -19,7 +19,7 @@ Extract Ghidra and execute `ghidraRun.bat (Windows)
 						    ghidraRun.sh (Linux)`
 
 You will be met with a screen that looks like
-![]({{ https://github.com }}/lookie27/ghidra-hello-world/blob/master/Blog%20Resources/GhidraNewProject.png )
+![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png)
 
 Click `File -> New Project`
 Select `Non Shared Project`
