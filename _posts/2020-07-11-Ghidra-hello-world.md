@@ -15,27 +15,60 @@ Ghidra is a Open Source decompiler released by the NSA. It is used to reverse en
 * Download the [HelloWorld binary](https://github.com/lookie27/ghidra-hello-world/raw/master/HelloWorld)
 
 # Getting started
-Extract Ghidra and execute ghidraRun.bat/sh
 
-You will be met with a screen that looks like
-![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png)
+## Lauching Ghidra 
+Extract Ghidra and enter it. 
+If you are on Windows, execute runGhidra.bat 
+If you are on Linux, execute runGhidra.sh 
+
+This will launch Ghidra and you will be met with a screen that looks like
+![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png) 
+This is where you can manage your projects; Since this is our first project, we are going to create a new one.
+
+## Creating a new project
 
 Click **File -> New Project** 
-Select **Non Shared Project** 
+Select **Non Shared Project** (Because we will be the only ones working on it) 
 Change the project directory to where you want the project to exist then give the project a name.
 
-Now click **Code Browser** (dragon's head) under Tool Chest.
+It's that _simple_! 
+
+Enough small talk, lets do some decompiling!
+
+## Decompiling 
+
+### Importing a binary
+
+To decompile a binary, we need to load it into Ghidra. 
+
+Click **Code Browser** (dragon's head) under Tool Chest, this will open the view where we will spend most of our time. 
 
 
 On the window that just opended, click **File -> Import File** and select the HelloWorld binary.
 
-A import settings window will open and Ghidra will 'guess' the format and language. Ghidra should be able to figure out this binary, so just click OK.
+A import settings window will open and Ghidra will attempt to figure out the format and language. Ghidra might assume the incorrect attributes and you may need to select them yourself, but in this case it is correct. 
 
-If you get a popup that say HelloWorld has not been analyzed yet, click yes otherwise ato the top click **Analysis - > Auto Analyze**. 
+### Binary Analysis 
+
+Before you continue let's take a moment to talk about what importing did and what analyzing will do. 
+Importing a file means that the machine code (10001010) of the imported file is loaded into Ghidra and can be read by it. 
+The machine code is not very human friendly, so when we analyze it, Ghidra translates it into assembly. Now with the translated assembly, Ghidra will attempt to translate that into the high level language that it was written it. This is a very hard task and Ghidra uses a series of different methods to construct a shell of the high level language. 
+
+What do I mean by shell? Well, depending on how much information is left in the binary: function names, function return types, variable names, variable types, ect. may not exist and Ghidra can only tell you what it knows. So if a return type was an int, but the binary doesn't contain that information, Ghidra will tell you the return type is a 8 byte type. 
+
+With that being said, let's continue.
+
+If you get a popup that say HelloWorld has not been analyzed yet, click yes otherwise at the top of the page click **Analysis - > Auto Analyze**. 
 Leave the default analyze options and click analyze.
 
 You screen will look similar to 
 ![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/DecompileView.png)
+
+### Reconstruction
+
+Earlier I said that Ghidra provides us with a shell, it is our job to fill that shell. 
+
+We will use our **blood**, **sweat**, and **tears**... and maybe a little **sheer willpower** to reconstruct this program! 
 
 On the left hand side, under **Symbol Tree** open functions and click **entry**.
 
@@ -91,11 +124,11 @@ Now lets look at **\_mysteryFunction**, click on it in the Symbol Tree.
 
 ![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/MysteryFunction.png)
 
-This might look confusing, because it is!
+This might look confusing, because it is! 
 
-##What is uRam0000000000000000?!
+**What is uRam0000000000000000?!** 
 
-Sometimes, it helpful to look at the assembly.
+Sometimes, it helpful to look at the assembly. 
 
 If we click on **\_mysteryFunction** in the Decompile view, we can see that it light up in the Listing view. Now lets follow the assembly: 
 ```
