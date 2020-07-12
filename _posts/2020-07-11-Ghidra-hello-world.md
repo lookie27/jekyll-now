@@ -17,19 +17,19 @@ Ghidra is a Open Source decompiler released by the NSA. It is used to reverse en
 # Getting started
 
 ## Lauching Ghidra 
-Extract Ghidra and enter it. 
-If you are on Windows, execute runGhidra.bat 
-If you are on Linux, execute runGhidra.sh 
+Extract Ghidra and enter it.  
+If you are on Windows, execute runGhidra.bat  
+If you are on Linux, execute runGhidra.sh  
 
-This will launch Ghidra and you will be met with a screen that looks like
-![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png) 
-This is where you can manage your projects; Since this is our first project, we are going to create a new one.
+This will launch Ghidra and you will be met with a screen that looks like  
+![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/GhidraNewProject.png)  
+This is where you can manage your projects; Since this is our first project, we are going to create a new one.  
 
 ## Creating a new project
 
-Click **File -> New Project** 
-Select **Non Shared Project** (Because we will be the only ones working on it) 
-Change the project directory to where you want the project to exist then give the project a name.
+Click **File -> New Project**  
+Select **Non Shared Project** (Because we will be the only ones working on it)  
+Change the project directory to where you want the project to exist then give the project a name.  
 
 It's that _simple_! 
 
@@ -52,9 +52,9 @@ A import settings window will open and Ghidra will attempt to figure out the for
 
 Before you continue let's take a moment to talk about what importing did and what analyzing will do. 
 Importing a file means that the machine code (10001010) of the imported file is loaded into Ghidra and can be read by it. 
-The machine code is not very human friendly, so when we analyze it, Ghidra translates it into assembly. Now with the translated assembly, Ghidra will attempt to translate that into the high level language that it was written it. This is a very hard task and Ghidra uses a series of different methods to construct a shell of the high level language. 
+The machine code is not very human friendly, so when we analyze it, Ghidra translates it into assembly. Now with the translated assembly, Ghidra will attempt to translate that into the high level language that it was written it. This is a very hard task and Ghidra uses a series of methods to construct a shell of the high level language. 
 
-What do I mean by shell? Well, depending on how much information is left in the binary: function names, function return types, variable names, variable types, ect. may not exist and Ghidra can only tell you what it knows. So if a return type was an int, but the binary doesn't contain that information, Ghidra will tell you the return type is a 8 byte type. 
+What do I mean by shell? Well, depending on how much information is left in the binary i.e: function names, function return types, variable names, variable types, ect. they may not exist and Ghidra can only tell you what it knows. So if a return type was an int, but the binary doesn't contain that information, Ghidra will tell you the return type is a 8 byte type. 
 
 With that being said, let's continue.
 
@@ -75,11 +75,11 @@ On the left hand side, under **Symbol Tree** open functions and click **entry**.
 Now on the right hand side of the screen, you should see a decompiled view of entry. 
 ![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/MainDecompile.png)
 
-This is where decompilation gets harder. Ghidra does its best with what it has, but we both know that doesn't look like C.
+This is where decompilation gets hard. Ghidra does its best, but we both know that doesn't look like C.
 
 Lets pretty this up!
 
-We know the entry point of a C program is main, so lets rename the entry function. **Right click** on entry and rename it to main.
+We know the entry point of a C program is main, so let's rename the entry function. **Right click** on entry and rename it to main.
 
 We can also see that the return value of main is 0, but the function definition says undefined8 or undefined type that is 8 bytes. 
 
@@ -106,7 +106,7 @@ calls _printString with helloWorldString
 frees hellowWorldString 
 ```
 
-Lets dig into **\_printString**, double click on it or open via the Symbol tree.
+Let's dig into **\_printString**, double click on it or open via the Symbol tree.
 
 ![](https://raw.githubusercontent.com/lookie27/ghidra-hello-world/master/Blog%20Resources/PrintDecompile.png)
 
@@ -128,9 +128,11 @@ This might look confusing, because it is!
 
 **What is uRam0000000000000000?!** 
 
-Sometimes, it helpful to look at the assembly. 
+Sometimes, it's helpful to look at the assembly. 
 
-If we click on **\_mysteryFunction** in the Decompile view, we can see that it light up in the Listing view. Now lets follow the assembly: 
+If we click on **\_mysteryFunction** in the Decompile view, we can see that it light up in the Listing view.
+
+We will go through the assembly and figure out what is happening.  
 ```
 PUSH 	RBP   								Push the frame pointer (FP) to RSP 
 MOV 	RBP, RSP 							Move the FP into RBP  
@@ -138,14 +140,14 @@ MOV 	qword ptr [RBP + _local_10], 0x0	Move the address of 0x0 into local variabl
 MOV		RAX,qword ptr [RBP + local_10]      Move the address of the local variable into RAX 
 MOV     byte ptr [RAX],0x5					Move 5 into the value at address define in RAX which is 0x0. 
 ```
-
-To sum that up, we create a local variable and set its address to 0x0 then set its value to 5 which would look like 
+  
+To sum that up, we create a local variable and set its address to 0x0 then set its value to 5 which would look like  
 ```
 void* p = 0; 
 p = 5; 
-```
+```  
 
-Now that we have our decompiled C program we can put it all together to get 
+Now that we have our decompiled C program we can put it all together to get  
 
 ```
 void _printString(char *stringValue)
@@ -223,5 +225,5 @@ int main(int argc, char *argv[])
 }
 
 ```
-It wasn't an exact match, but its good enough for Government work, heh, get it...NSA.
+It wasn't an exact match, but it's good enough for Government work.
 
