@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-My name is Lucas and I have a dog named Tucker. 
+I am a software developer just starting to find my own opinions.
 
 ### Contact me
 
