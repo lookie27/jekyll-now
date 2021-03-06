@@ -5,7 +5,7 @@ The latest build of Alloy can be found [here](https://alloytools.org/download.ht
 
 
 ## Flow control app
-What we are going to model is a smart sink. This smart sink will have the ability to be filled up via a mobile application.
+We are going to model is a smart sink. This smart sink will have the ability to be filled up via a mobile application.
 
 The sink has a water valve, a drain valve, and a water level sensor which are all connected to a wifi network.
 
@@ -40,7 +40,7 @@ App says to open drain valve ->
 
 
 #### Why are we trying to model this?
-What we want to avoid is the sink overflowing. So what we are going to try and see is that if at any point during operation if there is an internet issue, would the sink overflow?
+We want to avoid is the sink overflowing. So we are going to try and see if at any point during operation if there is an internet issue, would the sink overflow?
 
 #### How do we model this?
 Let's start with the describing the sink and the app.
@@ -68,17 +68,17 @@ one sig Sink {
 
 Now we need to add some fields to the signature
 
-Remeber we have three properties that we want to represent:  
+We have four properties that we want to represent for both the skink and app:  
 * WaterValve
 * DrainValve
 * WaterSensorTriggered
 * InternetWorking
 
-and an additional one for sing
+and an additional one for skink
 * WaterLevel
 
 Both Valves can have a value of open or closed and the Sensor can have a value of true or false.
-And let Water Level have a value of {Empty, Filling, Full, OF}
+Water Level will have a value of {Empty, Filling, Full, OF}
 
 We can define the types by creating some enums
 ```
@@ -109,11 +109,11 @@ waterLevel: WaterLevel
 
 The `one` following each field means that the signature only has one of these fields.
 
-A thing to remeber here, these fields we defined are a state of our system. These states have a relationship with time and we need to represent this.
+Note, these fields we defined are a state of our system. These states have a relationship with time and we need to represent this.
 
-###### This might me hard to understand, you need to remeber that we are not writing a program, we are creating a model of and need to model the states and the transitions of our system.
+###### Remember, we are not writing a program, we are creating a model. We need to model the states and the transitions of our system.
 
-To do this, we add the relationship symbol `->` and the thing we have a relationship with `Time`.
+To do this, we add the relationship symbol `->` and have a relationship with `Time`.
 
 ```
 one sig  App {
@@ -134,10 +134,10 @@ waterLevel: WaterLevel one -> Time
 Now we need to define the state transitions
 
 #### Sink
-Remeber, all of our fields are a relationship on time, so each unit of time has the above properties
+All of our fields have a relationship with time, so each unit of time has the above properties
 
 
-Now our sink water and drain valves should reflect the state given by the app, but only if the internet is working for both. To reflect that, we can write 
+Our sink water and drain valves should reflect the state given by the app, but only if the internet is working for both. To show that, we can write 
 
 ```
 one sig  Sink {
@@ -203,7 +203,7 @@ waterLevel: WaterLevel one -> Time
 }
 ```
 
-You might of notices we added the following functions `increaseLevel` and `decreaseLevel`. All these do is increment or decrement the water level. We are going to create those
+You might of noticed that we added the following functions `increaseLevel` and `decreaseLevel`. These increment or decrement the water level. We are going to create those by writing
 
 ```
 fun increaseLevel: WaterLevel -> WaterLevel {
@@ -223,13 +223,13 @@ fun waterLevelOrder: WaterLevel -> WaterLevel {
 }
 ```
 
-Now we are going to add the state transitions for the App. For sake of ease, we are going to say make the app prtty simple.
+Now we are going to add the state transitions for the App. For the sake of simplicity, we are going to make the app simple.
 
 The water valve is open iff the water sensor is not triggered  
 The drain valve is open iff the water valve is closed  
 and vice-versa
 
-We also need to add a transition for the water sensor, remeber, the app is getting this from the sing. Which will only work if both have internet.
+We also need to add a transition for the water sensor, remember, the app is getting its sensor information from the sink which will only work if they both have internet.
 
 ```
 one sig  App {
@@ -283,7 +283,7 @@ pred overflow[t: Time] {
 	}	
 }
 ```
-This is saying that there exists some uint of time where the water level is OF
+This is saying that there exists some unit of time where the water level is OF
 
 We have been using `Time` through out the specification, but what is Time? It is nothing more than a signature
 
@@ -399,4 +399,4 @@ fun waterLevelOrder: WaterLevel -> WaterLevel {
 
 ```
 
-If you execute this in Alloy, you will see that an *Instance* is found, or something that causes our predicate to be true.
+If you execute this in Alloy, you will see that an *Instance* is found, or something that causes our predicate to be true and in our case, this means that our sink is overflowing.
